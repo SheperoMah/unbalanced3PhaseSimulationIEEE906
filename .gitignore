@@ -3,15 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-<<<<<<< HEAD
 #load and generation files
 evload.csv
 generation.csv
 load.csv
 controlledLoad.csv
 
-=======
->>>>>>> d600379c4f6d562a7bdafa661a1e5c8a7906c6f6
 # C extensions
 *.so
 
