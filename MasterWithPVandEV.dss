@@ -1,0 +1,36 @@
+clear
+Set DefaultBaseFrequency=50  ! for European system
+
+New circuit.LVTestCaseUsingAusgridDataWithPVandEV
+Set %Growth=0.0
+Edit Vsource.Source BasekV=11 pu=1.00  ISC3=3000  ISC1=5
+Redirect LineCode.txt
+Redirect LoadShapesLoads.txt
+Redirect Lines.txt
+Redirect Transformers.txt
+Redirect Loads.txt
+Redirect Monitors.txt
+New EnergyMeter.GridMeter Element=Transformer.TR1 Terminal=1 
+New Monitor.FeederPower Element=Transformer.TR1 Terminal=1 Mode=1 
+
+
+!EV loads
+Redirect LoadShapesEVs.txt
+Redirect LoadsEVs.txt
+
+!PV Generation
+Redirect LoadShapesGeneration.txt
+Redirect PVGenerators.txt
+
+Set voltagebases=[11 .416]
+Calcvoltagebases
+
+Buscoords buscoords.txt
+
+Set mode=yearly number=52608 stepsize=30m      
+
+
+Solve
+Redirect Exporting.txt
+Export Monitors FeederPower
+Export Meters
